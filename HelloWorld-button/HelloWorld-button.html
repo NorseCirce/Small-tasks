@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+        body{
+          width: 100vw;
+          height: 100vh;
+        }
+        button {
+            width: 50%; 
+            height: auto; 
+            margin-left: 25%;
+            margin-right: auto;
+            font-size: xx-large;
+            font-weight: bolder;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 500px;
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+            object-position: bottom;
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+        }
+
+        
+    </style>
+
+    <meta charset="UTF-8" />
+    <title>Hello, World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Scale to device -->
+  </head>
+  <body>
+        <button id="helloButton" onclick="alert()">Say Hello</button>
+
+    <script>
+        function alert() {
+            // Check if image already exists to prevent duplicates
+            if (document.getElementById('gortImage')) return;
+
+            // Create an image element
+            const img = document.createElement('img');
+            img.src = 'Images/gort-capybara.gif'; // Path to the image
+            img.alt = 'Gort Capybara';
+            img.id = 'gortImage'; // Add an ID to the image
+
+            // Add the image to the main element
+            document.querySelector('body').appendChild(img);
+        }
+    </script>
+  </body>
+</html>

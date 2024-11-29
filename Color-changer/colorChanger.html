@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Color Change</title>
+
+    <style>
+      /* General body styling */
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Centered container */
+      .container {
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      /* Div styling */
+      #Change_my_Color {
+        background: linear-gradient(45deg, #007bff, #0056b3); /* Gradient color */
+        height: 200px;
+        width: 200px;
+        margin: 0 auto;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px; /* Rounded corners */
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Elevated shadow */
+        transition: all 0.4s ease;
+      }
+
+      #Change_my_Color:hover {
+        transform: scale(1.1) rotate(3deg); /* Hover scaling and subtle rotation */
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced hover shadow */
+      }
+
+      /* Button styling */
+      button {
+        margin-top: 30px;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        background: linear-gradient(45deg, #ff7eb3, #ff758c); /* Fancy gradient */
+        color: white;
+        border: none;
+        border-radius: 25px; /* Full rounded button */
+        cursor: pointer;
+        box-shadow: 0 8px 15px rgba(255, 117, 140, 0.3); /* Elevated shadow */
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background: linear-gradient(45deg, #ff758c, #ff2e63); /* Stronger gradient on hover */
+        transform: translateY(-5px) scale(1.1); /* "Lift" effect */
+        box-shadow: 0 12px 20px rgba(255, 46, 99, 0.5); /* Enhanced shadow on hover */
+      }
+
+      button:active {
+        transform: scale(0.95); /* Slight shrink effect when clicked */
+      }
+
+      /* Animation for container */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Animated colored box -->
+      <div id="Change_my_Color">Click the Button</div>
+      
+      <!-- Fancy button -->
+      <button onclick="colorChange()">Change Color</button>
+    </div>
+
+    <script>
+      // Function to toggle the background color with a gradient
+      function colorChange() {
+        const text = document.getElementById("Change_my_Color");
+        if (text.style.backgroundImage.includes("black")) {
+          text.style.background = "linear-gradient(45deg, #007bff, #0056b3)";
+        } else {
+          text.style.background = "linear-gradient(45deg, black, gray)";
+        }
+      }
+    </script>
+  </body>
+</html>

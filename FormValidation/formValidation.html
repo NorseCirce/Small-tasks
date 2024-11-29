@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      main {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        box-sizing: border-box;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .thank-you-message {
+        text-align: center;
+        margin-top: 20px;
+        color: green;
+        font-size: 1.2em;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <form action="/submit-form" method="post">
+        <!-- Name Input -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <!-- Dropdown -->
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+          <option value="">-- Select Gender --</option>
+          <option value="other">Other</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+      </form>
+
+      <div class="thank-you-message"></div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const nameInput = document.getElementById("name");
+        const genderSelect = document.getElementById("gender");
+        const thankYouMessage = document.querySelector(".thank-you-message");
+
+        // Create error message elements
+        const nameError = document.createElement("span");
+        nameError.style.color = "red";
+        nameError.style.fontSize = "0.9em";
+        nameError.style.display = "none"; // Hidden initially
+        nameInput.parentNode.insertBefore(nameError, nameInput.nextSibling);
+
+        const genderError = document.createElement("span");
+        genderError.style.color = "red";
+        genderError.style.fontSize = "0.9em";
+        genderError.style.display = "none"; // Hidden initially
+        genderSelect.parentNode.insertBefore(genderError, genderSelect.nextSibling);
+
+        form.addEventListener("submit", function (event) {
+          let isValid = true;
+
+          // Validate name input
+          if (nameInput.value.trim() === "") {
+            nameError.textContent = "Name is required.";
+            nameError.style.display = "inline";
+            isValid = false;
+          } else {
+            nameError.style.display = "none";
+          }
+
+          // Validate gender select
+          if (genderSelect.value === "") {
+            genderError.textContent = "Please select a gender.";
+            genderError.style.display = "inline";
+            isValid = false;
+          } else {
+            genderError.style.display = "none";
+          }
+
+          // If not valid, prevent form submission
+          if (!isValid) {
+            event.preventDefault();
+          } else {
+            event.preventDefault(); // Prevent form submission for demo purposes
+            thankYouMessage.textContent = "Thank you for submitting the form!";
+            thankYouMessage.style.display = "block";
+
+            // Clear form fields (optional)
+            form.reset();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
